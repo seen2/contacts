@@ -1,7 +1,11 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export default function Contact(props: any) {
+interface Props {
+  contact: { firstName: string; lastName: string; phone: number; key: number };
+}
+
+export default function Contact(props: Props) {
   return (
     <View>
       <Text style={{ color: "teal" }}>
