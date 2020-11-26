@@ -165,7 +165,7 @@ const lastNames: string[] = [
   "Murphy",
 ];
 
-interface Contact {
+export interface Contact {
   firstName: string;
   lastName: string;
   phone: number;
