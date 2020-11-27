@@ -6,11 +6,10 @@ import ContactRow from "../components/Contact";
 import getContact, { Contact } from "../contacts";
 
 export default function ContactsScreen(props: any) {
-  
   return (
     <View style={styles.container}>
       <ScrollView>
-        {getContact(5)
+        {getContact(10)
           .sort((a: Contact, b: Contact) => {
             if (a.firstName === b.firstName) return 0;
             else if (a.firstName > b.firstName) return 1;

@@ -32,6 +32,10 @@ export default function AddContactScreen() {
             placeholder="jhon@domain.com"
             autoCapitalize="none"
           />
+          <Input
+            title="Address :"
+            placeholder="NYC,US-10009"
+          />
           <Button title={"Save"} color="teal" onPress={() => {}} />
         </ScrollView>
       </KeyboardAvoidingView>
