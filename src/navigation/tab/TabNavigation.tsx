@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import SettingsStack from "../stack/SettingsStack";
 import ContactStack from "../stack/ContactStack";
+import AddContactScreen from "../../screens/AddContactScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,22 +16,18 @@ export default function MyTabs() {
         initialRouteName="Contact"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName: string="ios-contacts";
+            let iconName: string = "ios-contacts";
 
             if (route.name === "Contact") {
               iconName = "ios-contacts";
             } else if (route.name === "Settings") {
               iconName = "ios-list";
+            } else if (route.name === "AddContact") {
+              iconName = "ios-add-circle";
             }
 
             // You can return any component that you like here!
-            return (
-              <Ionicons
-                name={iconName}
-                size={size}
-                color={color}
-              />
-            );
+            return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
         tabBarOptions={{
@@ -38,9 +35,11 @@ export default function MyTabs() {
           inactiveTintColor: "gray",
           activeBackgroundColor: "#121212",
           inactiveBackgroundColor: "#121212",
+          keyboardHidesTabBar: true,
         }}
       >
         <Tab.Screen name="Contact" component={ContactStack} />
+        <Tab.Screen name="AddContact" component={AddContactScreen} />
         <Tab.Screen name="Settings" component={SettingsStack} />
       </Tab.Navigator>
     </NavigationContainer>
