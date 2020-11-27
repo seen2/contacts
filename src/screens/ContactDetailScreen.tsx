@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function ContactDetailScreen() {
   return (
     <View style={styles.container}>
-      <Text>Contact Detail</Text>
+      <Text style={{ color: "teal" }}>Contact Detail</Text>
     </View>
   );
 }
