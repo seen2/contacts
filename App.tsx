@@ -1,53 +1,72 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
 
-import ContactRow from "./src/components/Contact";
-import getContact, { Contact } from "./src/contacts";
+import ContactsScreen from "./src/screens/ContactsScreen";
+import AddContactScreen from "./src/screens/AddContactScreen";
+import { Button } from "react-native";
+import ContactDetailScreen from "./src/screens/ContactDetailScreen";
 
-export default function App() {
-  const [showContact, setShowContact] = useState(true);
+const Stack = createStackNavigator();
+
+function MyStack() {
   return (
-    <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 10,
-        }}
-      >
-        <Button title="Add Contact" color="teal" onPress={() => {}} />
-        <Button
-          title="Toggle Contact"
-          color="teal"
-          onPress={() => {
-            setShowContact(!showContact);
-          }}
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          options={({ route, navigation }) => ({
+            title: "Contacts",
+            headerStyle: {
+              backgroundColor: "#121212",
+            },
+            headerTintColor: "teal",
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 28,
+            },
+            headerRight: () => (
+              <Button
+                title="Add Contact"
+                color={"teal"}
+                onPress={() => navigation.navigate("AddContact")}
+              />
+            ),
+          })}
+          name="Home"
+          component={ContactsScreen}
         />
-      </View>
-      {showContact && (
-        <ScrollView>
-          {getContact(50)
-            .sort((a: Contact, b: Contact) => {
-              if (a.firstName === b.firstName) return 0;
-              else if (a.firstName > b.firstName) return 1;
-              else return -1;
-            })
-            .map((contact) => (
-              <ContactRow key={contact.key} contact={contact} />
-            ))}
-        </ScrollView>
-      )}
-      <StatusBar style="light" backgroundColor="black" />
-    </SafeAreaView>
+        <Stack.Screen
+          name="AddContact"
+          options={({ route, navigation }) => ({
+            title: "Add Contact",
+            headerStyle: {
+              backgroundColor: "#121212",
+            },
+            headerTintColor: "teal",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          })}
+          component={AddContactScreen}
+        />
+        <Stack.Screen
+          name="ContactDetail"
+          options={({ route, navigation }) => ({
+            headerStyle: {
+              backgroundColor: "#121212",
+            },
+            headerTintColor: "teal",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          })}
+          component={ContactDetailScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#111111",
-    padding: 10,
-  },
-});
+export default function App() {
+  return <MyStack />;
+}

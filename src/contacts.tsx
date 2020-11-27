@@ -185,9 +185,11 @@ const addKey = (
 
 const createContact = (): Contact => {
   const phone: number = createPhone();
+  let n: string = phone + "";
+  n = n[0];
   return {
     firstName: firstNames[phone % 10],
-    lastName: lastNames[phone % 10],
+    lastName: lastNames[+n % 10],
     phone,
   };
 };
