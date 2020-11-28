@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import ContactsScreen from "../../screens/ContactListScreen";
 import ContactDetailScreen from "../../screens/ContactDetailScreen";
+import { Contact } from "../../types/contactTypes";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,7 @@ export default function ContactStack() {
       <Stack.Screen
         name="ContactDetail"
         options={({ route, navigation }) => ({
+          title: route.params.contact.firstName.toUpperCase(),
           headerStyle: {
             backgroundColor: "#121212",
           },

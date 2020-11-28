@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
+import { Ionicons } from "@expo/vector-icons";
 
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { addContact } from "../redux/actions/contactActions";
 import * as Types from "../types/contactTypes";
-
 
 export default function AddContactScreen() {
   const [firstName, setFirstName] = useState<string>("" as string);
@@ -47,6 +47,12 @@ export default function AddContactScreen() {
         behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
         <ScrollView>
+          <View style={{ alignItems: "center" }}>
+            <Text style={{ color: "teal", fontWeight: "bold", fontSize: 30 }}>
+              Add Contact
+            </Text>
+            <Ionicons name={"ios-contact"} size={100} color={"teal"} />
+          </View>
           <Input
             title="First Name :"
             placeholder="Jhon"
@@ -76,7 +82,7 @@ export default function AddContactScreen() {
           />
           <Input
             title="Address :"
-            placeholder="NYC,US-10009"
+            placeholder="NYC, US-10009"
             value={address}
             multiline={true}
             numberOfLines={5}

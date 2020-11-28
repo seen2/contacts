@@ -2,10 +2,19 @@ import React from "react";
 import { View, Text, TouchableWithoutFeedback } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function ContactRow(props: any) {
+import { Contact } from "../types/contactTypes";
+
+interface Props {
+  contact: Contact;
+  navigation: any;
+}
+
+export default function ContactRow(props: Props) {
   return (
     <TouchableWithoutFeedback
-      onPress={() => props.navigation.navigate("ContactDetail")}
+      onPress={() =>
+        props.navigation.navigate("ContactDetail", { contact: props.contact })
+      }
     >
       <View
         style={{

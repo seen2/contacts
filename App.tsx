@@ -14,3 +14,17 @@ export default function App() {
     </Provider>
   );
 }
+
+/**
+ var firebaseConfig = {
+    apiKey: "AIzaSyBjOS6oBipUnSW2vl-o1WfLyIWFipWD1nY",
+    authDomain: "project0-bdcd2.firebaseapp.com",
+    databaseURL: "https://project0-bdcd2.firebaseio.com",
+    projectId: "project0-bdcd2",
+    storageBucket: "project0-bdcd2.appspot.com",
+    messagingSenderId: "739469829190",
+    appId: "1:739469829190:web:9f7a541799142e728ad647"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+ */

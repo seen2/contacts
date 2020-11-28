@@ -31,7 +31,11 @@ export default function ContactsScreen(props: any) {
               else return -1;
             })
             .map((contact: Types.Contact, index: number) => (
-              <ContactRow {...props} key={index} contact={contact} />
+              <ContactRow
+                navigation={props.navigation}
+                key={index}
+                contact={contact}
+              />
             ))}
         </ScrollView>
       )}
