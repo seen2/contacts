@@ -12,7 +12,6 @@ export default function ContactsScreen(props: any) {
 
   const contacts = useSelector<Types.Store, Types.Store["contacts"]>(
     (state) => {
-      console.log(state);
       return state.contacts;
     }
   );

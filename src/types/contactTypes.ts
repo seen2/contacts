@@ -20,3 +20,5 @@ export type ContactAction = {
   type: ContactActionTypes.ADD_CONTACT;
   payload: Contact;
 };
+
+export type Reducer = (state: Store, action: ContactAction) => Store;
