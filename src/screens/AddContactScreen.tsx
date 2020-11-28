@@ -12,7 +12,9 @@ import { useDispatch } from "react-redux";
 
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { addContact, contact } from "../redux/actions/contactActions";
+import { addContact } from "../redux/actions/contactActions";
+import * as Types from "../types/contactTypes";
+
 
 export default function AddContactScreen() {
   const [firstName, setFirstName] = useState<string>("" as string);
@@ -24,7 +26,7 @@ export default function AddContactScreen() {
   const dispatch = useDispatch();
 
   const onAddContact = () => {
-    const newContact: contact = {
+    const newContact: Types.Contact = {
       firstName,
       lastName,
       email,

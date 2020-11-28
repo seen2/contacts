@@ -1,22 +1,6 @@
-//Action Types
-export enum Contact {
-  ADD_CONTACT,
-}
+import * as Types from "../../types/contactTypes";
 
-export interface contact {
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
-  address: string;
-}
-
-export type contactAction = {
-  type: Contact.ADD_CONTACT;
-  payload: contact;
-};
-
-export const addContact = (newContact: contact) => ({
-  type: Contact.ADD_CONTACT,
+export const addContact = (newContact: Types.Contact) => ({
+  type: Types.ContactActionTypes.ADD_CONTACT,
   payload: newContact,
 });

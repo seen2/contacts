@@ -3,18 +3,19 @@ import React, { useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
-import ContactRow from "../components/Contact";
-import { contact } from "../redux/actions/contactActions";
+import ContactRow from "../components/ContactRow";
+import * as Types from "../types/contactTypes";
 // import getContact, { Contact } from "../contacts";
-import { ContactsState } from "../redux/reducers/contactReducer";
 
 export default function ContactsScreen(props: any) {
   const [toggleContact, setToggleContact] = useState(false);
 
-  const contacts = useSelector<ContactsState, ContactsState["contacts"]>(
-    (state) => state.contacts
+  const contacts = useSelector<Types.Store, Types.Store["contacts"]>(
+    (state) => {
+      console.log(state);
+      return state.contacts;
+    }
   );
-  // console.log(contacts);
 
   return (
     <View style={styles.container}>
@@ -25,12 +26,12 @@ export default function ContactsScreen(props: any) {
       {!toggleContact && (
         <ScrollView>
           {contacts
-            .sort((a: contact, b: contact) => {
+            .sort((a: Types.Contact, b: Types.Contact) => {
               if (a.firstName === b.firstName) return 0;
               else if (a.firstName > b.firstName) return 1;
               else return -1;
             })
-            .map((contact, index) => (
+            .map((contact: Types.Contact, index: number) => (
               <ContactRow {...props} key={index} contact={contact} />
             ))}
         </ScrollView>

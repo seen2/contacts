@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 
-import ContactsScreen from "../../screens/ContactsScreen";
+import ContactsScreen from "../../screens/ContactListScreen";
 import ContactDetailScreen from "../../screens/ContactDetailScreen";
 
 const Stack = createStackNavigator();

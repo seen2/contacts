@@ -1,18 +1,14 @@
-import { Contact, contact, contactAction } from "../actions/contactActions";
+import * as Types from "../../types/contactTypes";
 
-export interface ContactsState {
-  contacts: contact[];
-}
-
-const initialState = { contacts: [] };
+const initialState: Types.Contact[] = [];
 
 export const contactReducer = (
-  state: ContactsState = initialState,
-  action: contactAction
+  state: Types.Contact[] = initialState,
+  action: Types.ContactAction
 ) => {
   switch (action.type) {
-    case Contact.ADD_CONTACT:
-      return { ...state, contacts: [...state.contacts, action.payload] };
+    case Types.ContactActionTypes.ADD_CONTACT:
+      return [...state, action.payload];
     default:
       return state;
   }
