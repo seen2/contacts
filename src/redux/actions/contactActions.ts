@@ -6,7 +6,7 @@ export enum Contact {
 export interface contact {
   firstName: string;
   lastName: string;
-  phone: number;
+  phone: string;
   email: string;
   address: string;
 }

@@ -4,7 +4,8 @@ import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
 import ContactRow from "../components/Contact";
-import getContact, { Contact } from "../contacts";
+import { contact } from "../redux/actions/contactActions";
+// import getContact, { Contact } from "../contacts";
 import { ContactsState } from "../redux/reducers/contactReducer";
 
 export default function ContactsScreen(props: any) {
@@ -13,6 +14,7 @@ export default function ContactsScreen(props: any) {
   const contacts = useSelector<ContactsState, ContactsState["contacts"]>(
     (state) => state.contacts
   );
+  // console.log(contacts);
 
   return (
     <View style={styles.container}>
@@ -22,14 +24,14 @@ export default function ContactsScreen(props: any) {
       />
       {!toggleContact && (
         <ScrollView>
-          {getContact(100)
-            .sort((a: Contact, b: Contact) => {
+          {contacts
+            .sort((a: contact, b: contact) => {
               if (a.firstName === b.firstName) return 0;
               else if (a.firstName > b.firstName) return 1;
               else return -1;
             })
-            .map((contact) => (
-              <ContactRow {...props} key={contact.key} contact={contact} />
+            .map((contact, index) => (
+              <ContactRow {...props} key={index} contact={contact} />
             ))}
         </ScrollView>
       )}
