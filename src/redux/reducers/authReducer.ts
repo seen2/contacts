@@ -12,7 +12,7 @@ export const userReducer = (state: Store["user"] = {}, action: UserAction) => {
     case UserActionTypes.LOGIN_SUCCESS:
       return { user: action.payload };
     case UserActionTypes.ON_LOGOUT:
-    case UserActionTypes.LOGIN_SUCCESS:
+    case UserActionTypes.CREATE_ACCOUNT_SUCCESS:
       return {};
     default:
       return state;
