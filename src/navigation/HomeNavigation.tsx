@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import LoginScreen from "../screens/LoginScreen";
 import MyTabs from "./tab/TabNavigation";
 import { Store } from "../types/mainTypes";
+import RegisterScreen from "../screens/RegisterScreen";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,19 @@ export default function HomeNavigation() {
               options={{ headerShown: false }}
               name="Login"
               component={LoginScreen}
+            />
+            <Stack.Screen
+              options={({ route, navigation }) => ({
+                headerStyle: {
+                  backgroundColor: "#121212",
+                },
+                headerTintColor: "teal",
+                headerTitleStyle: {
+                  fontWeight: "bold",
+                },
+              })}
+              name="Register"
+              component={RegisterScreen}
             />
           </>
         ) : (

@@ -19,7 +19,7 @@ import { onLogin } from "../redux/actions/authAction";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 
-export default function SettingsScreen() {
+export default function LoginScreen(props: any) {
   const [email, setEmail] = useState<string>("" as string);
   const [password, setPassword] = useState<string>("" as string);
   const [loading, setLoading] = useState(false);
@@ -79,7 +79,11 @@ export default function SettingsScreen() {
               >
                 Didn't have account?
               </Text>
-              <Button title={"Sign Up"} color="teal" onPress={() => {}} />
+              <Button
+                title={"Sign Up"}
+                color="teal"
+                onPress={() => props.navigation.navigate("Register")}
+              />
             </View>
           ) : (
             <Spinner size={30} color="teal" />

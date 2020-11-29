@@ -28,3 +28,24 @@ export const onSignout = async (dispatch: any) => {
     alert("Something went wrong");
   }
 };
+
+export const register = async (
+  { email, password }: LoginUser,
+  dispatch: any
+) => {
+  try {
+    dispatch({
+      type: UserActionTypes.CREATE_ACCOUNT_REQUEST_SENT,
+      payload: null,
+    });
+    const user = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password);
+    dispatch({ type: UserActionTypes.CREATE_ACCOUNT_SUCCESS, payload: user });
+  } catch (error) {
+    dispatch({
+      type: UserActionTypes.CREATE_ACCOUNT_FAILED,
+      payload: error.message,
+    });
+  }
+};
