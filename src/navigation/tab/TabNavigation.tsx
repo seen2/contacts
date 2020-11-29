@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 import SettingsStack from "../stack/SettingsStack";
@@ -11,7 +10,6 @@ const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Contact"
         screenOptions={({ route }) => ({
@@ -42,6 +40,5 @@ export default function MyTabs() {
         <Tab.Screen name="AddContact" component={AddContactScreen} />
         <Tab.Screen name="Settings" component={SettingsStack} />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }

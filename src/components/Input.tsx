@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TextInput, useWindowDimensions, Text } from "react-native";
 
-export default function LoginScreen(props: any) {
+export default function Input(props: any) {
   const { width } = useWindowDimensions();
   return (
     <View style={{ margin: 5 }}>

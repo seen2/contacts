@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -28,14 +29,13 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="light" />
+
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
         <ScrollView>
           <View style={{ alignItems: "center" }}>
-            <Text style={{ color: "teal", fontWeight: "bold", fontSize: 30 }}>
-              Login
-            </Text>
             <Ionicons name={"ios-contact"} size={100} color={"teal"} />
           </View>
 
@@ -55,6 +55,21 @@ export default function SettingsScreen() {
             secureTextEntry={true}
           />
           <Button title={"Login"} color="teal" onPress={() => onAddContact()} />
+          <Text
+            style={{
+              color: "#fff3f3f3",
+              fontWeight: "bold",
+              fontSize: 18,
+              textAlign: "center",
+            }}
+          >
+            Didn't have account?
+          </Text>
+          <Button
+            title={"Sign Up"}
+            color="teal"
+            onPress={() => onAddContact()}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -65,5 +80,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#111111",
+    alignItems: "center",
   },
 });
