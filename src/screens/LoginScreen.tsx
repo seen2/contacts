@@ -24,6 +24,8 @@ export default function SettingsScreen() {
   const [password, setPassword] = useState<string>("" as string);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const user = useSelector<Store, Store["user"]>((state) => state.user);
+  const [err, setErr] = useState(" ");
   const login = async () => {
     try {
       setLoading(true);
@@ -32,9 +34,9 @@ export default function SettingsScreen() {
       alert("Something Went Wrong");
     } finally {
       setLoading(false);
+      setErr(user.error);
     }
   };
-  const user = useSelector<Store, Store["user"]>((state) => state.user);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,7 +48,7 @@ export default function SettingsScreen() {
         <ScrollView>
           <View style={{ alignItems: "center" }}>
             <Ionicons name={"ios-contact"} size={100} color={"teal"} />
-            {user.error && <Error error={user.error} />}  
+            {err && <Error error={err} />}
           </View>
 
           <Input
