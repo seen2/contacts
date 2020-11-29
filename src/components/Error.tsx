@@ -2,7 +2,7 @@ import React from "react";
 
 import { View, Text } from "react-native";
 
-export default (props: { error: string }): React.ReactElement => {
+export const Error = (props: { error: string }): React.ReactElement => {
   return (
     <View>
       <Text
@@ -19,3 +19,4 @@ export default (props: { error: string }): React.ReactElement => {
     </View>
   );
 };
+export default Error;

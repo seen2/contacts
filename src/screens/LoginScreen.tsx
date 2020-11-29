@@ -15,14 +15,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { Store } from "../types/mainTypes";
-import { onLogin } from "../redux/actions/userAction";
+import { onLogin } from "../redux/actions/authAction";
 import Spinner from "../components/Spinner";
+import Error from "../components/Error";
 
 export default function SettingsScreen() {
   const [email, setEmail] = useState<string>("" as string);
   const [password, setPassword] = useState<string>("" as string);
   const [loading, setLoading] = useState(false);
-
   const dispatch = useDispatch();
   const login = async () => {
     try {
@@ -34,7 +34,6 @@ export default function SettingsScreen() {
       setLoading(false);
     }
   };
-
   const user = useSelector<Store, Store["user"]>((state) => state.user);
 
   return (
@@ -47,6 +46,7 @@ export default function SettingsScreen() {
         <ScrollView>
           <View style={{ alignItems: "center" }}>
             <Ionicons name={"ios-contact"} size={100} color={"teal"} />
+            {user.error && <Error error={user.error} />}  
           </View>
 
           <Input
@@ -64,8 +64,8 @@ export default function SettingsScreen() {
             onChangeText={(text: string) => setPassword(text)}
             secureTextEntry={true}
           />
-          {loading ? (
-            <view>
+          {!loading ? (
+            <View>
               <Button title={"Login"} color="teal" onPress={() => login()} />
               <Text
                 style={{
@@ -78,7 +78,7 @@ export default function SettingsScreen() {
                 Didn't have account?
               </Text>
               <Button title={"Sign Up"} color="teal" onPress={() => {}} />
-            </view>
+            </View>
           ) : (
             <Spinner size={30} color="teal" />
           )}

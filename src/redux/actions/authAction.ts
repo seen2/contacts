@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import { User, UserActionTypes, LoginUser } from "../../types/userTypes";
+import { UserActionTypes, LoginUser } from "../../types/authTypes";
 
 export const onLogin = async (
   { email, password }: LoginUser,
@@ -17,5 +17,14 @@ export const onLogin = async (
       type: UserActionTypes.LOGIN_FAILED,
       payload: error.message,
     });
+  }
+};
+
+export const onSignout = async (dispatch: any) => {
+  try {
+    firebase.auth().signOut();
+    dispatch({ type: UserActionTypes.ON_LOGOUT, payload: null });
+  } catch (error) {
+    alert("Something went wrong");
   }
 };
