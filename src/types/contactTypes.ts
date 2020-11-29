@@ -1,6 +1,8 @@
-export enum ContactActionTypes {
-  ADD_CONTACT,
-}
+import { Store } from "./mainTypes";
+
+export const ContactActionTypes = {
+  ADD_CONTACT: "ADD_CONTACT",
+};
 export interface Contact {
   firstName: string;
   lastName: string;
@@ -12,13 +14,10 @@ export interface Contact {
 export interface ContactsState {
   contacts: Contact[];
 }
-export type Store = {
-  contacts: Contact[];
-};
 
 export type ContactAction = {
-  type: ContactActionTypes.ADD_CONTACT;
+  type: string;
   payload: Contact;
 };
 
-export type Reducer = (state: Store, action: ContactAction) => Store;
+export type ContactReducer = (state: Store, action: ContactAction) => Store;

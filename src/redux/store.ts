@@ -12,5 +12,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(persistedReducer, applyMiddleware(reduxThunk));
+export const store: any = createStore(
+  persistedReducer,
+  applyMiddleware(reduxThunk)
+);
 export const persistor = persistStore(store);

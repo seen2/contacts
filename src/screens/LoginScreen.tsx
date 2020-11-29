@@ -10,22 +10,32 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { useSelector, useDispatch } from "react-redux";
 
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { Store } from "../types/mainTypes";
+import { onLogin } from "../redux/actions/userAction";
+import Spinner from "../components/Spinner";
 
 export default function SettingsScreen() {
   const [email, setEmail] = useState<string>("" as string);
   const [password, setPassword] = useState<string>("" as string);
+  const [loading, setLoading] = useState(false);
 
-  const onAddContact = () => {
-    const newUser = {
-      email,
-      password,
-    };
-    setPassword("");
-    setEmail("");
+  const dispatch = useDispatch();
+  const login = async () => {
+    try {
+      setLoading(true);
+      await onLogin({ email, password }, dispatch);
+    } catch (error) {
+      alert("Something Went Wrong");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const user = useSelector<Store, Store["user"]>((state) => state.user);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -54,22 +64,24 @@ export default function SettingsScreen() {
             onChangeText={(text: string) => setPassword(text)}
             secureTextEntry={true}
           />
-          <Button title={"Login"} color="teal" onPress={() => onAddContact()} />
-          <Text
-            style={{
-              color: "#fff3f3f3",
-              fontWeight: "bold",
-              fontSize: 18,
-              textAlign: "center",
-            }}
-          >
-            Didn't have account?
-          </Text>
-          <Button
-            title={"Sign Up"}
-            color="teal"
-            onPress={() => onAddContact()}
-          />
+          {loading ? (
+            <view>
+              <Button title={"Login"} color="teal" onPress={() => login()} />
+              <Text
+                style={{
+                  color: "#fff3f3f3",
+                  fontWeight: "bold",
+                  fontSize: 18,
+                  textAlign: "center",
+                }}
+              >
+                Didn't have account?
+              </Text>
+              <Button title={"Sign Up"} color="teal" onPress={() => {}} />
+            </view>
+          ) : (
+            <Spinner size={30} color="teal" />
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

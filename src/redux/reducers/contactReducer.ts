@@ -1,9 +1,8 @@
 import * as Types from "../../types/contactTypes";
-
-const initialState: Types.Contact[] = [];
+import { Store } from "../../types/mainTypes";
 
 export const contactReducer = (
-  state: Types.Contact[] = initialState,
+  state: Store["contacts"] = [],
   action: Types.ContactAction
 ) => {
   switch (action.type) {

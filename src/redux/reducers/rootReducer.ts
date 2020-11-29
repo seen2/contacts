@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
 
-import * as Types from "../../types/contactTypes";
 import { contactReducer } from "./contactReducer";
+import { userReducer } from "./userReducer";
 
-export const rootReducer = combineReducers<Types.Store>({
+export const rootReducer = combineReducers({
   contacts: contactReducer,
+  user: userReducer,
 });

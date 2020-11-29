@@ -1,20 +1,25 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
 import ContactRow from "../components/ContactRow";
+import { Store } from "../types/mainTypes";
 import * as Types from "../types/contactTypes";
 // import getContact, { Contact } from "../contacts";
 
 export default function ContactsScreen(props: any) {
   const [toggleContact, setToggleContact] = useState(false);
+  const data = useSelector<Store, Store["contacts"]>((state) => {
+    return state.contacts;
+  });
+  const [contacts, setContacts] = useState<Types.Contact[]>(data);
 
-  const contacts = useSelector<Types.Store, Types.Store["contacts"]>(
-    (state) => {
-      return state.contacts;
-    }
-  );
+  useEffect(() => {
+    setContacts(data);
+
+    return () => {};
+  }, [data, contacts]);
 
   return (
     <View style={styles.container}>
